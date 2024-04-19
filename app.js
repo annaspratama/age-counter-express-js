@@ -7,6 +7,7 @@ import logger from "morgan"
 import { fileURLToPath } from "url"
 import packages from "./packages/packages.js"
 import viewRouter from "./routes/view-router.js"
+import apiRouter from "./routes/api-router.js";
 
 const app = express()
 
@@ -26,6 +27,9 @@ packages(app, express, __dirname)
 
 // view route
 viewRouter(app, express)
+
+// api route
+apiRouter(app, express)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
