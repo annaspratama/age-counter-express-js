@@ -5,6 +5,7 @@ import path from "path"
 import cookieParser from "cookie-parser"
 import logger from "morgan"
 import { fileURLToPath } from "url"
+import packages from "./packages/packages.js"
 import viewRouter from "./routes/view-router.js"
 
 const app = express()
@@ -19,6 +20,9 @@ app.set('view engine', 'pug')
 app.use(logger('dev'))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+
+// load packages
+packages(app, express, __dirname)
 
 // view route
 viewRouter(app, express)
