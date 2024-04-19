@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  div(class="container-fluid")
+    div(class="row vh-100 d-flex justify-content-center align-items-center")
+      div(class="col-lg-4 col-md-4 col-sm-6")
+        div(class="card bg-light")
+          div(class="card-header text-center")
+            strong #{title}
+          div(class="card-body")
+            form(action="#", method="#")
+              div(class="mb-3")
+                label(for="birth-date") Birth Date
+                input(type="text", class="form-control", name="birth-date", required)
+              div(class="mb-3")
+                label(for="last-date") Last Date
+                input(type="text", class="form-control", name="last-date", required)
+              div(class="mb-3 text-center")
+                button(type="submit", class="btn btn-success") Count
+
+  script(src="https://unpkg.com/vue@3/dist/vue.global.js") 
