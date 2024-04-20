@@ -3,11 +3,11 @@ import Age from "../service/age-service.js";
 class AgeController {
 
     counter = (req, res) => {
-        var birthDate = req.body.hasOwnProperty("birthdate") ? req.body.birthdate : null
-        var lastDate = req.body.hasOwnProperty("lastdate") ? req.body.lastdate : null
+        const birthDate = req.body.hasOwnProperty("birthdate") ? req.body.birthdate : null
+        const lastDate = req.body.hasOwnProperty("lastdate") ? req.body.lastdate : null
 
         if (birthDate) {
-            let age = new Age(new Date(1992, 10, 10))
+            let age = new Age(birthDate, lastDate)
             res.status(200).json(age.countAge())
             res.end()
         } else {
