@@ -8,28 +8,42 @@ block content
           div(class="card-header text-center")
             strong #{title}
           div(class="card-body")
-            form(action="#", method="#")
+            form(action="#", method="#" @submit.prevent="countAge")
               div(class="mb-3")
                 label(for="birth-date") Birth Date
-                input(type="text", class="form-control", name="birth-date", required)
+                input(type="text", class="form-control", v-model="request_data.birthdate", required)
               div(class="mb-3")
                 label(for="last-date") Last Date
-                input(type="text", class="form-control", name="last-date", required)
+                input(type="text", class="form-control", v-model="request_data.lastdate", required)
               div(class="mb-3 text-center")
                 button(type="submit", class="btn btn-success") Count
 
   script(src="/vue/vue.global.js")
+  script(src="/axios/axios.min.js") 
   //- vue.global.prod.js
 
   script.
     const app = Vue.createApp({
       data() {
         return {
-          result: {}
+          request_data: {
+            birthdate: null,
+            lastdate: null
+          },
+          response_data: {}
         }
       },
       methods: {
-        countAge: () => {}
+        countAge: function() {
+          axios.post("/api/count-age", this.request_data)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                var errorMsg = err.response.data.message
+                console.error(errorMsg);
+            })
+        }
       }
     })
 
