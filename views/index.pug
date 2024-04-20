@@ -4,7 +4,7 @@ block content
   div(class="container-fluid")
     div(class="row vh-100 d-flex justify-content-center align-items-center")
       div(class="col-lg-4 col-md-4 col-sm-6")
-        div(class="card bg-light")
+        div(id="app", class="card bg-light")
           div(class="card-header text-center")
             strong #{title}
           div(class="card-body")
@@ -20,3 +20,17 @@ block content
 
   script(src="/vue/vue.global.js")
   //- vue.global.prod.js
+
+  script.
+    const app = Vue.createApp({
+      data() {
+        return {
+          result: {}
+        }
+      },
+      methods: {
+        countAge: () => {}
+      }
+    })
+
+    app.mount("#app")

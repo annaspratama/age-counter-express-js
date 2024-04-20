@@ -5,8 +5,7 @@ import Age from "../service/age-service.js"
 const router = (app, express) => {
     const router = express.Router()
     let ageController = new AgeController()
-  
-    // app.use(express.urlencoded({ extended: false }))
+
     app.use(express.json())
 
     // routes list
