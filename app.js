@@ -7,10 +7,9 @@ import logger from "morgan"
 import { fileURLToPath } from "url"
 import packages from "./packages/packages.js"
 import viewRouter from "./routes/view-router.js"
-import apiRouter from "./routes/api-router.js";
+import apiRouter from "./routes/api-router.js"
 
 const app = express()
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 

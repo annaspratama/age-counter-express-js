@@ -1,19 +1,16 @@
-import "express-group-routes";
+import "express-group-routes"
+import AgeController from "../controller/AgeController.js";
+import Age from "../service/age-service.js"
 
 const router = (app, express) => {
     const router = express.Router()
+    let ageController = new AgeController()
   
     // app.use(express.urlencoded({ extended: false }))
     app.use(express.json())
 
-    router.route('/count-age')
-        .get((req, res) => {
-            let data = {
-                msg: "Pesan data."
-            }
-            res.json(data).status(200)
-            res.end()
-        })
+    // routes list
+    router.route('/count-age').post(ageController.counter)
 
     app.group('/api', (route) => {
         route.use(router)
