@@ -9,7 +9,7 @@ Unfortunately, this project has not yet been deployed.
 
 ### Usage ###
 
-* Clone this repo.
+* Clone this repo `git clone git@github.com:annaspratama/age-counter-express-js.git`.
 * Run command `npm i`.
 * Run server `npm run dev`.
 * Open browser and type `http://localhost:3000`.
