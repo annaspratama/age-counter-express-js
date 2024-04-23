@@ -1,7 +1,7 @@
 # Age Counter #
 
 Age counter is system that count age by given birthdate and custom last date.
-This project are build with Node Express JS abd Vue JS.
+This project are build with Node Express JS and Vue JS.
 
 ### Demo ###
 
