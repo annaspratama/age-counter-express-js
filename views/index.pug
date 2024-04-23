@@ -1,50 +1,66 @@
 extends layout
 
+block css
+  link(rel="stylesheet", href="https://unpkg.com/@vuepic/vue-datepicker@latest/dist/main.css")
+
 block content
-  div(class="container-fluid")
+
+  div(id="app", class="container-fluid")
     div(class="row vh-100 d-flex justify-content-center align-items-center")
       div(class="col-lg-4 col-md-4 col-sm-6")
-        div(id="app", class="card bg-light")
+        h4(class="text-center mb-3 text-primary", v-if="response_data") {{ response_data }}
+        div(class="card bg-light")
           div(class="card-header text-center")
             strong #{title}
           div(class="card-body")
             form(action="#", method="#" @submit.prevent="countAge")
               div(class="mb-3")
                 label(for="birth-date") Birth Date
-                input(type="text", class="form-control", v-model="request_data.birthdate", required)
+                //- input(type="text", class="form-control", id="birthdate", v-model="request_data.birthdate", required)
+                <custom-date-picker v-model="request_data.birthdate" fixed-end :enable-time-picker="false" :clearable="false" max-date="max_date" format="dd/MM/yyyy" type="date" required />
               div(class="mb-3")
                 label(for="last-date") Last Date
-                input(type="text", class="form-control", v-model="request_data.lastdate", required)
+                //- input(type="text", class="form-control", id="lastdate", v-model="request_data.lastdate", required)
+                <custom-date-picker v-model="request_data.lastdate" fixed-end :enable-time-picker="false" :clearable="false" format="dd/MM/yyyy" type="date" required />
               div(class="mb-3 text-center")
                 button(type="submit", class="btn btn-success") Count
 
-  script(src="/vue/vue.global.js")
-  script(src="/axios/axios.min.js") 
-  //- vue.global.prod.js
+block js
+  script(src="https://unpkg.com/@vuepic/vue-datepicker@latest") 
 
   script.
+    const date = null
+
     const app = Vue.createApp({
       data() {
         return {
+          max_date: null,
           request_data: {
             birthdate: null,
             lastdate: null
           },
-          response_data: {}
+          response_data: null
         }
       },
       methods: {
-        countAge: function() {
+        countAge: function() {  
           axios.post("/api/count-age", this.request_data)
             .then(res => {
-                console.log(res)
+                this.response_data = `Your age is ${res.data.year} year(s), ${res.data.month} month, and ${res.data.day} day.`
             })
             .catch(err => {
                 var errorMsg = err.response.data.message
                 console.error(errorMsg);
             })
         }
-      }
+      },
+      mounted() {
+        const today = new Date()
+        this.date = today
+        this.max_date = today
+      },
     })
+
+    app.component("custom-date-picker", VueDatePicker)
 
     app.mount("#app")

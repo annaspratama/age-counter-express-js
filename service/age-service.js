@@ -8,13 +8,9 @@ class Age {
 
         const result = new Promise((resolve, reject) => {
             var now = new Date()
-            const [birthRawYear, birthRawMonth, birthRawDay] = this.birthDate.split("-")
-            var birthDate = new Date(birthRawYear, birthRawMonth, birthRawDay)
+            var birthDate = new Date(this.birthDate)
             
-            if (this.lastDate) {
-                const [lastRawYear, lastRawMonth, lastRawDay] = this.lastDate.split("-")
-                now = new Date(lastRawYear, lastRawMonth, lastRawDay)
-            }
+            if (this.lastDate) now = new Date(this.lastDate)
 
             const yearNow = now.getFullYear()
             const monthNow = now.getMonth() + 1
@@ -43,7 +39,7 @@ class Age {
             resolve({
                 year: yearAge,
                 month: monthAge,
-                day: dayAge
+                day: dayAge > 0 ? dayAge : 0
             })
         })
 
