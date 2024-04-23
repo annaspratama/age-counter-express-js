@@ -1,29 +1,15 @@
-# README #
+# Age Counter #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Age counter is system that count age by given birthdate and custom last date.
+This project are build with Node Express JS abd Vue JS.
 
-### What is this repository for? ###
+### Demo ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Unfortunately, this project has not yet been deployed.
 
-### How do I get set up? ###
+### Usage ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Clone this repo.
+* Run command `npm i`.
+* Run server `npm run dev`.
+* Open browser and type `http://localhost:3000`.
